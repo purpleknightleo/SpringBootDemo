@@ -1,5 +1,6 @@
 package com.lee.demo.springboot.controller;
 
+import com.lee.demo.springboot.SpringBootApp;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Created by hzlifan on 2017/3/1.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = MiscController.class)
+@SpringBootTest(classes = SpringBootApp.class)
 @AutoConfigureMockMvc
 public class MiscControllerTest {
 
@@ -37,7 +38,7 @@ public class MiscControllerTest {
         mvc.perform(
             get("/misc/name").contentType(MediaType.TEXT_HTML)
                 .param("uid", "123")).andExpect(status().isOk())
-            .andExpect(content().string(equalTo("hello")));
+            .andExpect(content().string(equalTo("kobe")));
     }
 
 }

@@ -1,9 +1,12 @@
 package com.lee.demo.springboot.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.lee.demo.springboot.service.MiscService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.core.env.Environment;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 /**
@@ -15,14 +18,22 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 public class MiscController {
 
+    private static final Logger logger = LoggerFactory.getLogger(MiscController.class);
+
+    @Autowired
+    private Environment         env;
+
+    @Autowired
+    private MiscService         miscService;
+
     /**
-     * index page
+     * 获取当前profile名称，@GetMapping = @RequestMapping + GET
      *
      * @return
      */
-    @RequestMapping("/")
-    public String index() {
-        return "Welcome to SpringBoot Demo by Fernando Lee";
+    @GetMapping(path = "/env/profile")
+    public String getActiveProfile() {
+        return "active profile : " + env.getProperty("spring.profiles.active");
     }
 
     /**
@@ -33,7 +44,8 @@ public class MiscController {
      */
     @RequestMapping(value = "/misc/name", method = RequestMethod.GET)
     public String getName(@RequestParam("uid") Long uid) {
-        return "hello";
+        logger.debug("get name, uid = {}", uid);
+        return miscService.getName();
     }
 
 }
