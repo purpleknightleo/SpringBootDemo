@@ -1,0 +1,48 @@
+package com.lee.demo.springboot;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+/**
+ * Swagger2配置类
+ * 不允许有Controller是用@EnableWebMvc标识的，否则会报错
+ * 启动程序后，访问http://localhost:8080/swagger-ui.html
+ * 参考：http://blog.didispace.com/springbootswagger2/
+ */
+@Configuration
+@EnableSwagger2
+public class Swagger2 {
+
+    /**
+     * 扫描所有Controller，只有@ApiIgnore标识的Controller才会忽略
+     *
+     * @return
+     */
+    @Bean
+    public Docket createRestApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(apiInfo())
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.lee.demo.springboot.controller"))
+                .paths(PathSelectors.any())
+                .build();
+    }
+
+    private ApiInfo apiInfo() {
+        return new ApiInfoBuilder()
+                .title("Spring Boot中使用Swagger2构建RESTful APIs")
+                .description("http://blog.lee.com/")
+                .termsOfServiceUrl("http://blog.lee.com/")
+                .contact("Fernando Lee")
+                .version("1.0")
+                .build();
+    }
+
+}

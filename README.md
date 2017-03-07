@@ -5,3 +5,4 @@ This project is a simple example of SpringBoot
    2.1 logback-spring.xml(not logback.xml) specifies corresponding logging level for prd/test/dev profile
    2.2 application.properties specifies log file path, it will override same configurations in logback*.xml if presented
 3. Specify active profile in application.properties
+4. Swagger2 to auto-generate API doc and test cases
