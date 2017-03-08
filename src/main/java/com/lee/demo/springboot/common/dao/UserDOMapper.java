@@ -4,10 +4,11 @@ import com.lee.demo.springboot.common.dao.domain.UserDO;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.jdbc.SQL;
 
+import java.util.List;
 import java.util.Map;
 
 /**
- * 用户Mapper（不通过XXXMapper.xml，直接利用注解配置SQL）
+ * 用户Mapper（不通过XXXMapper.xml，直接利用注解配置SQL），需要添加@Mapper，并且是接口而不是类
  *
  * Created by hzlifan on 2017/3/8.
  */
@@ -31,9 +32,18 @@ public interface UserDOMapper {
     UserDO getUserById(@Param("uid") Long uid);
 
     /**
+     * 列表查询
+     *
+     * @return
+     */
+    @Select("select * from " + TABLE_NAME)
+    List<UserDO> listUser();
+
+    /**
      * 添加用户
      * 其中SQL语句采用了@InsertProvider的形式注入
      * 参数为Bean
+     * 
      * @param userDO
      */
     @InsertProvider(type = SqlBuilder.class, method = "genInsertSql")

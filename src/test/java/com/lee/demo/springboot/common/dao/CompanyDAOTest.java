@@ -1,8 +1,7 @@
 package com.lee.demo.springboot.common.dao;
 
-import com.google.common.collect.Maps;
 import com.lee.demo.springboot.SpringBootApp;
-import com.lee.demo.springboot.common.dao.domain.UserDO;
+import com.lee.demo.springboot.common.dao.domain.CompanyDO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -15,10 +14,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Map;
 
 /**
- * 测试UserDOMapper
+ * 测试CompanyDAO
  *
  * Created by hzlifan on 2017/3/8.
  */
@@ -26,40 +24,33 @@ import java.util.Map;
 @SpringBootTest(classes = SpringBootApp.class)
 @AutoConfigureMockMvc
 @Transactional
-public class UserDOMapperTest {
+public class CompanyDAOTest {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserDOMapperTest.class);
+    private static final Logger logger = LoggerFactory.getLogger(CompanyDAOTest.class);
 
     @Autowired
-    private UserDOMapper        userDOMapper;
+    private CompanyDAO          companyDAO;
+
+    @Test
+    @Transactional(readOnly = true)
+    public void testSelect() {
+        CompanyDO companyDO = companyDAO.getCompanyByCid(6L);
+        logger.info(companyDO.toString());
+    }
 
     @Test
     @Rollback(false)
     public void testInsert() {
-        UserDO userDO = new UserDO(99L, "Rodman", "1");
-        userDOMapper.addUser(userDO);
-    }
-
-    @Test
-    public void testSelect() {
-        UserDO userDO = userDOMapper.getUserById(2L);
-        logger.info(userDO.toString());
-    }
-
-    @Test
-    @Rollback(false)
-    public void testDelete() {
-        Map<String, Object> params = Maps.newHashMap();
-        params.put("uid", 99L);
-        userDOMapper.delUser(params);
+        CompanyDO companyDO = new CompanyDO(7L, "SF", "delivery");
+        companyDAO.addCompany(companyDO);
     }
 
     @Test
     @Transactional(readOnly = true)
     public void testListSelect() {
-        List<UserDO> userList = userDOMapper.listUser();
-        for (UserDO userDO : userList) {
-            logger.info(userDO.toString());
+        List<CompanyDO> companyList = companyDAO.listCompany();
+        for (CompanyDO companyDO : companyList) {
+            logger.info(companyDO.toString());
         }
     }
 

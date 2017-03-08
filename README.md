@@ -15,4 +15,5 @@ Ref:
 5. Read config properties in .properties files
 6. Mybatis
    6.1 XXXMapper.java to config SQL statements
+   6.2 traditional XXXMapper.xml+XXXDAO.java configurations
 
