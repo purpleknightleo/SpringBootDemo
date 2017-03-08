@@ -17,7 +17,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 /**
  * MiscController的测试类
- * 需要在@SpringBootTest中把关联的Controller传入
  *
  * Created by hzlifan on 2017/3/1.
  */
