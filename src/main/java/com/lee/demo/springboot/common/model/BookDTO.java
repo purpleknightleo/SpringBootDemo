@@ -1,9 +1,17 @@
 package com.lee.demo.springboot.common.model;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 /**
  * Created by hzlifan on 2017/3/7.
  */
 public class BookDTO {
+
+    /**
+     * 该字段不参与序列化，反序列化由deserialize属性控制
+     */
+    @JSONField(serialize = false)
+    private Long    bid;
 
     private String  name;
 
@@ -14,10 +22,19 @@ public class BookDTO {
     public BookDTO() {
     }
 
-    public BookDTO(String name, Integer pages, String author) {
+    public BookDTO(Long bid, String name, Integer pages, String author) {
+        this.bid = bid;
         this.name = name;
         this.pages = pages;
         this.author = author;
+    }
+
+    public Long getBid() {
+        return bid;
+    }
+
+    public void setBid(Long bid) {
+        this.bid = bid;
     }
 
     public String getName() {
@@ -46,7 +63,7 @@ public class BookDTO {
 
     @Override
     public String toString() {
-        return "name = " + name + ", pages = " + pages + ", author = " + author;
+        return "bid = " + bid + ", name = " + name + ", pages = " + pages + ", author = " + author;
     }
 
 }

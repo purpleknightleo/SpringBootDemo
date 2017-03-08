@@ -1,7 +1,14 @@
 package com.lee.demo.springboot;
 
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson.support.config.FastJsonConfig;
+import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter4;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.converter.HttpMessageConverter;
 
 /**
  * SpringBoot启动类(一般放在顶层目录下，所以@SpringBootApplication的scanBasePackages可以不写)
@@ -14,6 +21,22 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication //(scanBasePackages = "com.lee.demo.springboot")
 public class SpringBootApp {
+
+    /**
+     * 使用fastjson作为序列化工具
+     * 参考：http://412887952-qq-com.iteye.com/blog/2315202
+     *
+     * @return
+     */
+    @Bean
+    public HttpMessageConverters fastJsonHttpMessageConverters() {
+        FastJsonHttpMessageConverter4 fastConverter = new FastJsonHttpMessageConverter4();
+        FastJsonConfig fastJsonConfig = new FastJsonConfig();
+        fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);
+        fastConverter.setFastJsonConfig(fastJsonConfig);
+        HttpMessageConverter<?> converter = fastConverter;
+        return new HttpMessageConverters(converter);
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(SpringBootApp.class, args);

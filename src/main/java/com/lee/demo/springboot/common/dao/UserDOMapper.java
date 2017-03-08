@@ -43,7 +43,7 @@ public interface UserDOMapper {
      * 添加用户
      * 其中SQL语句采用了@InsertProvider的形式注入
      * 参数为Bean
-     * 
+     *
      * @param userDO
      */
     @InsertProvider(type = SqlBuilder.class, method = "genInsertSql")

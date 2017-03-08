@@ -12,7 +12,7 @@ import springfox.documentation.annotations.ApiIgnore;
 import java.util.Map;
 
 /**
- * 书籍控制类（用于测试Swagger2自动生成API文档）
+ * 书籍控制类（用于测试Swagger2自动生成API文档、fastjson序列化）
  *
  * Created by hzlifan on 2017/3/7.
  */
@@ -28,8 +28,8 @@ public class BookController {
      * @param bookDTO
      * @return
      */
-    @PostMapping(path= "")
-    @ApiOperation(value="添加书籍", notes="添加书籍")
+    @PostMapping(path = "")
+    @ApiOperation(value = "添加书籍", notes = "添加书籍")
     @ApiImplicitParam(name = "bookDTO", value = "书籍实体", required = true, dataType = "BookDTO")
     public Map<String, Object> addBook(@RequestBody BookDTO bookDTO) {
         try {
@@ -44,19 +44,39 @@ public class BookController {
     /**
      * 忽略Swagger2
      *
-     * @param id
+     * @param bid
      * @return
      */
-    @DeleteMapping(path = "/{id}")
+    @DeleteMapping(path = "/{bid}")
     @ApiIgnore
-    public Map<String, Object> delBook(@PathVariable("id") Integer id) {
+    public Map<String, Object> delBook(@PathVariable("bid") Integer bid) {
         try {
-            logger.info("delete book, id = {}" ,id);
+            logger.info("delete book, bid = {}", bid);
             return PackUtils.genSuccessResponse();
         } catch (Exception e) {
             logger.error("fail to delete book", e);
         }
         return PackUtils.genErrorResponse(300, "internal error");
+    }
+
+    /**
+     * 测试fastjson序列化（主类中加入HttpMessageConverters方法），bid字段应被ignore
+     *
+     * @param bid
+     * @return
+     */
+    @GetMapping(path = "/{bid}")
+    @ApiIgnore
+    public String getBook(@PathVariable("bid") Integer bid) {
+        try {
+            logger.info("get book, bid = {}", bid);
+            BookDTO bookDTO = new BookDTO(4L, "1984", 100, "George Owell");
+
+            return PackUtils.genSuccessResponseStr(bookDTO);
+        } catch (Exception e) {
+            logger.error("fail to get book", e);
+        }
+        return PackUtils.genErrorResponseStr(300, "internal error");
     }
 
 }
