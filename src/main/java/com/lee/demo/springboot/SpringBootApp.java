@@ -4,9 +4,11 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter4;
+import com.lee.demo.springboot.common.config.MusicProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.converter.HttpMessageConverter;
 
@@ -20,6 +22,7 @@ import org.springframework.http.converter.HttpMessageConverter;
  * Created by hzlifan on 2017/3/1.
  */
 @SpringBootApplication //(scanBasePackages = "com.lee.demo.springboot")
+@EnableConfigurationProperties(MusicProperties.class)
 public class SpringBootApp {
 
     /**

@@ -25,10 +25,20 @@ public class PropertiesTest {
     @Autowired
     private MiscProperties      miscProperties;
 
+    @Autowired
+    private MusicProperties     musicProperties;
+
     @Test
     public void test() {
         logger.info("projectUrl = {}", miscProperties.getProjectUrl());
         logger.info("user.id = {}", miscProperties.getUserId());
+    }
+
+    @Test
+    public void testMusicProps() {
+        logger.info("music.id = {}", musicProperties.getId());
+        logger.info("music.name = {}", musicProperties.getName());
+        logger.info("music.singer = {}", musicProperties.getSinger());
     }
 
 }

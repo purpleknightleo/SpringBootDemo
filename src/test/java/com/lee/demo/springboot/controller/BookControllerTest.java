@@ -1,6 +1,8 @@
 package com.lee.demo.springboot.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.lee.demo.springboot.SpringBootApp;
+import com.lee.demo.springboot.common.model.BookDTO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -35,6 +38,14 @@ public class BookControllerTest {
     public void getBook() throws Exception {
         mvc.perform(get("/book/4").contentType(MediaType.TEXT_HTML)).andExpect(status().isOk())
             .andDo(print());
+    }
+
+    @Test
+    public void addBook() throws Exception {
+        BookDTO bookDTO = new BookDTO(55L, "Black Swan", 300, "Nassim Nicholas Taleb");
+        String json = JSONObject.toJSONString(bookDTO);
+        mvc.perform(post("/book").contentType(MediaType.APPLICATION_JSON_UTF8).content(json))
+            .andExpect(status().isOk()).andDo(print());
     }
 
 }

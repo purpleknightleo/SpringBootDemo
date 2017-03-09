@@ -32,4 +32,5 @@ public class MiscProperties {
     public void setUserId(Integer userId) {
         this.userId = userId;
     }
+
 }
