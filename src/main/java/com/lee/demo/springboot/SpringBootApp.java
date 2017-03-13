@@ -12,6 +12,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * SpringBoot启动类(一般放在顶层目录下，所以@SpringBootApplication的scanBasePackages可以不写)
@@ -25,6 +26,7 @@ import org.springframework.http.converter.HttpMessageConverter;
 @SpringBootApplication //(scanBasePackages = "com.lee.demo.springboot")
 @EnableConfigurationProperties(MusicProperties.class)
 @EnableCaching
+@EnableScheduling
 public class SpringBootApp {
 
     /**

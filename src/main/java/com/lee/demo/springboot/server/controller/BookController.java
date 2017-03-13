@@ -1,4 +1,4 @@
-package com.lee.demo.springboot.controller;
+package com.lee.demo.springboot.server.controller;
 
 import com.lee.demo.springboot.common.model.BookDTO;
 import com.lee.demo.springboot.common.utils.PackUtils;

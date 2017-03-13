@@ -1,17 +1,12 @@
-package com.lee.demo.springboot.controller;
+package com.lee.demo.springboot.server.controller;
 
-import com.lee.demo.springboot.common.model.BookDTO;
-import com.lee.demo.springboot.common.utils.PackUtils;
 import com.lee.demo.springboot.service.MiscService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-
-import java.util.Map;
 
 /**
  * 必须加上@EnableWebMvc才能被JUnit测试

@@ -1,4 +1,4 @@
-package com.lee.demo.springboot.controller;
+package com.lee.demo.springboot.server.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
