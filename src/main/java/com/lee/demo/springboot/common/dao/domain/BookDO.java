@@ -1,11 +1,13 @@
 package com.lee.demo.springboot.common.dao.domain;
 
+import java.io.Serializable;
+
 /**
  * 书籍DO
  *
  * Created by hzlifan on 2017/3/9.
  */
-public class BookDO {
+public class BookDO implements Serializable {
 
     private Long    bid;
 

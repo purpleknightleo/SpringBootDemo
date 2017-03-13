@@ -39,7 +39,7 @@ public class BookDAOImpl extends BaseDAO<BookDO> implements BookDAO {
      * @param bookDO
      */
     @Override
-    @CachePut(key = "#bookDO.getBid()")
+    @CachePut(key = "#bookDO.bid")
     public BookDO save(BookDO bookDO) {
         executeInsert(NAMESPACE + ".save", bookDO);
         return bookDO;

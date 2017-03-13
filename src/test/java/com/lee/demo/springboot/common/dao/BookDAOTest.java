@@ -16,8 +16,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * 使用方法：
  * 1）启动类加@EnableCaching
  * 2）编写XXXDAOImpl，添加@Cacheable/@CacheInput/@CacheEvict注解
- * 3）配置缓存(不配置会自动使用内置的缓存方案)，这里以EhCache为例，1）添加ehcache依赖 2）编写ehcache.xml
- *
+ * 3）配置缓存(不配置会自动使用内置的缓存方案)，以EhCache和Redis分别为例：
+ *    ehcache: 1）添加ehcache依赖 2）编写ehcache.xml 3）application.properties中添加spring.cache.type=ehcache
+ *    redis：1）添加spring-boot-starter-data-redis依赖 2）application.properties中添加spring.cache.type=redis，以及redis相关配置
  * 参考：
  * http://blog.didispace.com/springbootcache1/
  * http://blog.csdn.net/whatlookingfor/article/details/51833378
