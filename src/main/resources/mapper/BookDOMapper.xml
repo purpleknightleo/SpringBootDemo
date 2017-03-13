@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lee.demo.springboot.common.dao.BookDAO">
+
+    <resultMap type="BookDO"
+               id="bookMap">
+        <!-- 用id属性来映射主键字段 -->
+        <id property="bid" column="bid"/>
+        <!-- 用result属性来映射非主键字段 -->
+        <result property="name" column="name"/>
+        <result property="pages" column="pages"/>
+        <result property="author" column="author"/>
+    </resultMap>
+
+    <!-- query by bid -->
+    <select id="getByBid" resultType="BookDO" parameterType="Long">
+        SELECT *
+        FROM book
+        WHERE bid = #{bid}
+    </select>
+
+    <!-- add a book -->
+    <insert id="save" parameterType="BookDO">
+        INSERT INTO book (bid,name,pages,author) VALUES (#{bid},#{name}, #{pages}, #{author})
+    </insert>
+
+    <!-- delete a book -->
+    <insert id="remove" parameterType="Long">
+        DELETE FROM book WHERE bid = #{bid}
+    </insert>
+
+</mapper>
+
