@@ -23,7 +23,6 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = SpringBootApp.class)
 @AutoConfigureMockMvc
-@Transactional
 public class CompanyDAOTest {
 
     private static final Logger logger = LoggerFactory.getLogger(CompanyDAOTest.class);
@@ -32,21 +31,18 @@ public class CompanyDAOTest {
     private CompanyDAO          companyDAO;
 
     @Test
-    @Transactional(readOnly = true)
     public void testSelect() {
         CompanyDO companyDO = companyDAO.getCompanyByCid(6L);
         logger.info(companyDO.toString());
     }
 
     @Test
-    @Rollback(false)
     public void testInsert() {
         CompanyDO companyDO = new CompanyDO(7L, "SF", "delivery");
         companyDAO.addCompany(companyDO);
     }
 
     @Test
-    @Transactional(readOnly = true)
     public void testListSelect() {
         List<CompanyDO> companyList = companyDAO.listCompany();
         for (CompanyDO companyDO : companyList) {

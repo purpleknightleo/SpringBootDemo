@@ -17,8 +17,9 @@ Ref:
    5.1 Method1: @Value, see details in MiscProperties.java   
    5.2 Method2: @ConfigurationProperties, see details in MusicProperties.java   
 6. **Mybatis**   
-   6.1 Method1: XXXMapper.java to config SQL statements, see details in UserDOMapper.java  
-   6.2 Method2: traditional XXXMapper.xml+XXXDAO.java configurations, see details in CompanyDAOImpl.java  
+   6.1 Druid as dataSource, see details in application-dev.properties   
+   6.2 Method1: XXXMapper.java to config SQL statements, see details in UserDOMapper.java  
+   6.3 Method2: traditional XXXMapper.xml+XXXDAO.java configurations, see details in CompanyDAOImpl.java  
 7. **fastjson**   
    7.1 fastjson to replace default jackson for serialization/deserialization, see details in SpringBootApp.java  
    7.2 @JSONField(serialize = false) to ignore field in serialization, see details in BookDTO.java  
